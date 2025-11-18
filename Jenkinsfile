@@ -1,6 +1,5 @@
 pipeline {
-    
-        agent { any }
+    agent any  // must be directly under pipeline
 
     environment {
         APP_NAME = "simple-java-docker-app"
