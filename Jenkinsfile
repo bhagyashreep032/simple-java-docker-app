@@ -14,7 +14,7 @@ pipeline {
 
         stage("Checkout Code") {
             steps {
-                git url: 'https://github.com/<your-username>/<your-repo>.git',
+                git url: 'https://github.com/bhagyashreep032/simple-java-docker-app.git',
                     credentialsId: 'github-creds'
             }
         }
