@@ -19,15 +19,6 @@ pipeline {
             }
         }
 
-        stage("Install AWS CLI") {
-            steps {
-                sh """
-                apk add --no-cache python3 py3-pip
-                pip3 install awscli
-                """
-            }
-        }
-
         stage("Docker Build") {
             steps {
                 sh """
