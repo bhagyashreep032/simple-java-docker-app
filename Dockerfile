@@ -1,8 +1,9 @@
 FROM eclipse-temurin:17-jdk
+
 WORKDIR /app
 
-COPY src/Hello.java .
+COPY target/*.jar app.jar
 
-RUN javac Hello.java
+EXPOSE 8080
 
-CMD ["java", "Hello"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
