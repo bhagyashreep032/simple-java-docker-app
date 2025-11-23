@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         APP_NAME = "simple-java-docker-app"
+        IMAGE_TAG = "latest"
         ECR_REPO = "853715069488.dkr.ecr.ap-south-1.amazonaws.com/mydemorepo-32"
         AWS_REGION = "ap-south-1"
     }
@@ -50,7 +51,7 @@ pipeline {
                 helm upgrade --install myapp ./helm-repo \
                   --namespace jenkins \
                   --create-namespace \
-                  --set image.repository=${IMAGE_REPO} \
+                  --set image.repository=${ECR_REPO} \
                   --set image.tag=${IMAGE_TAG}
                 '''
             }
