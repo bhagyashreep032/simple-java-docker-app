@@ -9,8 +9,8 @@ spec:
     - host: {{ (index .Values.ingress.hosts 0).host | default "" | quote }}
       http:
         paths:
-          - path: {{ (index .Values.ingress.hosts 0).paths 0).path | default "/" }}
-            pathType: {{ (index .Values.ingress.hosts 0).paths 0).pathType | default "Prefix" }}
+          - path: {{ (index (index .Values.ingress.hosts 0).paths 0).path | default "/" }}
+            pathType: {{ (index (index .Values.ingress.hosts 0).paths 0).pathType | default "Prefix" }}
             backend:
               service:
                 name: {{ .Chart.Name }}
