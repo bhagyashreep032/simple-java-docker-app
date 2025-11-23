@@ -47,13 +47,13 @@ pipeline {
 
         stage('Deploy using Helm') {
             steps {
-                sh '''
+                sh """
                 helm upgrade --install myapp ./helm-repo \
                   --namespace jenkins \
                   --create-namespace \
                   --set image.repository=${ECR_REPO} \
                   --set image.tag=${IMAGE_TAG}
-                '''
+                """
             }
         }
 
