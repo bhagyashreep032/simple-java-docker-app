@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ""    # pipeline will overwrite
+  repository: ""
   tag: "latest"
   pullPolicy: IfNotPresent
 
@@ -14,7 +14,7 @@ ingress:
   enabled: true
   className: "nginx"
   hosts:
-    - host: ""     # empty → works with ALB hostname
+    - host: ""
       paths:
         - path: /
           pathType: Prefix
