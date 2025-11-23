@@ -1,20 +1,20 @@
 replicaCount: 1
 
 image:
-  repository: <your-docker-image>   
+  repository: ""    # pipeline will overwrite
   tag: "latest"
   pullPolicy: IfNotPresent
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
   targetPort: 8080
 
 ingress:
-  enabled: false
-  className: ""
+  enabled: true
+  className: "nginx"
   hosts:
-    - host: myapp.example.com
+    - host: ""     # empty → works with ALB hostname
       paths:
         - path: /
           pathType: Prefix
