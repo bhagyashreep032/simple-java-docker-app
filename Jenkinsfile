@@ -50,7 +50,10 @@ pipeline {
 
         stage('Deploy using Helm') {
             steps {
-                
+                 withCredentials([
+            [$class: 'AmazonWebServicesCredentialsBinding', 
+             credentialsId: 'aws-cred']
+        ]) {
                 sh """
                 helm upgrade --install myapp ./helm-repo \
                   --namespace jenkins \
@@ -59,6 +62,7 @@ pipeline {
                   --set image.tag=${IMAGE_TAG}
                 """
         }
+            }
     }
 
     }
