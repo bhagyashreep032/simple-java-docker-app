@@ -50,7 +50,7 @@ pipeline {
 
         stage('Deploy using Helm') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig-eks', variable: 'KUBECONFIG')]){
+                
                 sh """
                 helm upgrade --install myapp ./helm-repo \
                   --namespace jenkins \
@@ -58,7 +58,6 @@ pipeline {
                   --set image.repository=${ECR_REPO} \
                   --set image.tag=${IMAGE_TAG}
                 """
-            }
         }
     }
 
