@@ -44,14 +44,17 @@ pipeline {
             }
         }
 
-        stage("Deploy Container") {
+        stage('Deploy using Helm') {
             steps {
-                sh """
-                docker rm -f ${APP_NAME} || true
-                docker pull ${ECR_REPO}:latest
-                docker run -d --name ${APP_NAME} -p 8081:8080 ${ECR_REPO}:latest
-                """
+                sh '''
+                helm upgrade --install myapp ./helm-repo \
+                  --namespace jenkins \
+                  --create-namespace \
+                  --set image.repository=${IMAGE_REPO} \
+                  --set image.tag=${IMAGE_TAG}
+                '''
             }
         }
+
     }
 }
