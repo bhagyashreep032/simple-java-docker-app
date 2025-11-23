@@ -55,7 +55,7 @@ pipeline {
              credentialsId: 'aws-cred']
         ]) {
                 sh """
-                helm upgrade --install myapp ./simple-java-docker-app/helm-repo \
+                helm upgrade --install myapp $WORKSPACE/helm-repo \
                   --namespace jenkins \
                   --create-namespace \
                   --set image.repository=${ECR_REPO} \
