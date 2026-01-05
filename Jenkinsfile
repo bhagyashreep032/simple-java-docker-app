@@ -15,13 +15,7 @@ pipeline {
             }
         }
 
-        stage("Build JAR") {
-            steps {
-                sh "mvn clean package -DskipTests"
-            }
-        }
-
-        stage("Docker Build") {
+        stage("Build image") {
             steps {
                 sh """
                 docker build -t ${APP_NAME}:latest .
