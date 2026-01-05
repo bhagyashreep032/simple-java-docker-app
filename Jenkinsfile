@@ -15,6 +15,13 @@ pipeline {
             }
         }
 
+       stage("Build Java App") {
+            steps {
+                sh "mvn clean package -DskipTests"
+            }
+        }
+
+
         stage("Build image") {
             steps {
                 sh """
