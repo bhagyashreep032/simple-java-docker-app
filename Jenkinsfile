@@ -51,11 +51,15 @@ pipeline {
 
         stage('Deploy using Helm') {
     steps {
-        // Use the Kubernetes kubeconfig stored in Jenkins credentials
-        withCredentials([file(credentialsId: 'kube-cred', variable: 'KUBECONFIG')]) {
+        withCredentials([
+            [$class: 'AmazonWebServicesCredentialsBinding',
+             credentialsId: 'aws-cred'],
+            file(credentialsId: 'kube-cred', variable: 'KUBECONFIG')
+        ]) {
             sh """
                 echo "Using kubeconfig at \$KUBECONFIG"
-                kubectl config get-contexts
+
+                aws sts get-caller-identity
                 kubectl get nodes
 
                 helm upgrade --install myapp $WORKSPACE/helm-repo \
@@ -67,6 +71,7 @@ pipeline {
         }
     }
 }
+
 
 
     }
