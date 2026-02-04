@@ -4,7 +4,7 @@ pipeline {
     environment {
         APP_NAME = "simple-java-docker-app"
         IMAGE_TAG = "latest"
-        ECR_REPO = "853715069488.dkr.ecr.ap-south-1.amazonaws.com/my-ecr-repo"
+        ECR_REPO = "814022332232.dkr.ecr.ap-south-1.amazonaws.com/my-ecr-repo"
         AWS_REGION = "ap-south-1"
     }
 
